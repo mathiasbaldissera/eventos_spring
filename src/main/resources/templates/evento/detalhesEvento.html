@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>Eventos App</title>
+
+
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+</head>
+
+<body>
+    <h3>INformações do evento de Eventos:</h3>
+    <a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>
+        Lista de Eventos
+    </a>
+    <div class="container" th:each="evento:${evento}">
+        <div class="row">
+            <p>Nome: <span th:text="${evento.nome}"></span></p>
+            <p>Local: <span th:text="${evento.local}"></span></p>
+            <p>Data: <span th:text="${evento.data}"></span></p>
+            <p>Horario: <span th:text="${evento.horario}"></span></p>
+        </div>
+        <Br>
+    </div>
+    <th:block th:include="mensagemValidacao"></th:block>
+
+    <form class="container row" method="POST">
+        <div class="col s12">
+            RG:<input required name="rg" />
+        </div>
+        <div class="col s12">
+            Nome:<input required name="nomeConvidado" />
+        </div>
+        <button type="reset" class="waves-effect btn waves-light grey">Limpar</button>
+        <button type="submit" class="waves-effect btn waves-light green">Adicionar</button>
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="input-field col s6">
+                    <b>Nome</b>
+                </div>
+            <div class="input-field col s3">
+                    <b>RG</b>
+            </div>
+        </div>
+    </div>
+    <div class="container" th:each="convidado: ${convidados}">
+        <div class="row">
+            <div class="input-field col s6">
+                <p th:text="${convidado.nomeConvidado}"></p>
+            </div>
+            <div class="input-field col s3">
+                <p th:text="${convidado.rg}"></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
